@@ -1,18 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "../App.css";
-<<<<<<< HEAD
-
-const ReadAllProduct = () => {
-  let [products, setProducts] = useState([]);
-=======
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import "../App.css";
 
 const ReadAllProduct = () => {
   let [products, setProducts] = useState([]);
   let navigate = useNavigate();
->>>>>>> 0754757c8f1d38f327c420d359bae7b1bc9366aa
 
   const getData = async () => {
     let result = await axios({
@@ -21,9 +15,11 @@ const ReadAllProduct = () => {
     });
     setProducts(result.data.data);
   };
+
   useEffect(() => {
     getData();
   }, []);
+
   return (
     <div className="products-container">
       {products.map((value, index) => {
@@ -33,8 +29,7 @@ const ReadAllProduct = () => {
             <p>price is: {value.price}</p>
             <p>quantity is: {value.quantity}</p>
             <p>description is: {value.description}</p>
-<<<<<<< HEAD
-=======
+
             <button
               onClick={() => {
                 navigate(`/product/update/${value._id}`);
@@ -54,7 +49,6 @@ const ReadAllProduct = () => {
             >
               Delete
             </button>
->>>>>>> 0754757c8f1d38f327c420d359bae7b1bc9366aa
           </div>
         );
       })}
