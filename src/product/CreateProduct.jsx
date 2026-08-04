@@ -1,44 +1,81 @@
-import React, { useState } from 'react'
+import axios from "axios";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const CreateProduct = () => {
-    let [name, setName] = useState("");
-    let [price,setPrice] = useState("");
-    let [quantity,setQuantity] = useState("");
-    let [description,setDescription] = useState("");
+  let [name, setName] = useState("");
+  let [price, setPrice] = useState("");
+  let [quantity, setQuantity] = useState("");
+  let [description, setDescription] = useState("");
 
-    let handleSubmit = (e) => {
-        e.preventDefault();
-        let product = {
-            name: name,
-            price: price,
-            quantity: quantity,
-            description: description
-        };
-        console.log(product);
+  let handleSubmit = async (e) => {
+    e.preventDefault();
+    let product = {
+      name: name,
+      price: price,
+      quantity: quantity,
+      description: description,
+    };
+    // console.log(product);
+
+    // send the product data to the backend server using fetch api
+    // localhost:8000/product, post
+    try {
+      let result = await axios({
+        url: "http://localhost:8000/product",
+        method: "post",
+        data: product,
+      });
+      setName("");
+      setPrice("");
+      setQuantity("");
+      setDescription("");
+      toast.success("Product created successfully");
+      // success
+    } catch (error) {
+      toast.error(error.response.data.error);
+      //fail
+      // toast.error("something went wrong");
     }
+  };
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         </div>
         <div>
           <label>Price</label>
-          <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
         </div>
         <div>
           <label>Quantity</label>
-          <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+          <input
+            type="number"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
         </div>
         <div>
           <label>Description</label>
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </div>
         <button type="submit">Submit</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default CreateProduct
+export default CreateProduct;

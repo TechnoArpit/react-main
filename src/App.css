@@ -1,0 +1,39 @@
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 30px;
+  background-color: #f4f4f9;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.products-container > div {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.products-container > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.products-container h3 {
+  margin: 0 0 10px 0;
+  color: #222;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+
+.products-container p {
+  margin: 6px 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.products-container p:first-of-type {
+  font-weight: bold;
+  color: #2b7a0b;
+}
