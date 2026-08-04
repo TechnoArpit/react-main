@@ -1,17 +1,17 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import '../App.css';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import "../App.css";
 
 const ReadAllProduct = () => {
-let [products, setProducts] = useState([]);
+  let [products, setProducts] = useState([]);
 
-const getData =async () => {
+  const getData = async () => {
     let result = await axios({
       url: "http://localhost:8000/product",
       method: "get",
     });
     setProducts(result.data.data);
-  }
+  };
   useEffect(() => {
     getData();
   }, []);
@@ -24,11 +24,11 @@ const getData =async () => {
             <p>price is: {value.price}</p>
             <p>quantity is: {value.quantity}</p>
             <p>description is: {value.description}</p>
-          </div>)
-        })
-      }
+          </div>
+        );
+      })}
     </div>
-  )
-}
+  );
+};
 
-export default ReadAllProduct
+export default ReadAllProduct;
